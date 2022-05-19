@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>SRX Session Analyzer</h1>
+    <div class="row">
+        <div class="column">
+          <div class="card">
+            <h3>Top Source IP</h3>
+            <p id="src_ip">
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <h3>Top Destination IP</h3>
+            <p id="dest_ip"></p>
+          </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="column">
+          <div class="card">
+            <h3>Top Packets</h3>
+            <p id="packets"></p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <h3>Top Bytes</h3>
+            <p id="bytes"></p>
+          </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="column">
+          <div class="card">
+            <h3>Top Policy</h3>
+            <p id="policy"></p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <h3>Top Session Timeout</h3>
+            <p id="timeout"></p>
+          </div>
+        </div>
+    </div>
+</body>
+<script>
+  fetch("http://0.0.0.0:6969/api/output")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      document.querySelector("#src_ip").innerHTML = data.src_ip
+      document.querySelector("#dest_ip").innerHTML = data.dst_ip
+      document.querySelector("#packets").innerHTML = data.packets
+      document.querySelector("#bytes").innerHTML = data.bytes
+      document.querySelector("#policy").innerHTML = data.policy
+      document.querySelector("#timeout").innerHTML = data.timeout
+    })
+</script>
+</html>
+
+

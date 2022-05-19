@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    ports:
+    - "6969:6969"
+    volumes:
+    - ./backend:/backend
+    environment:
+      FLASK_ENV: development
+  frontend:
+    build: ./Frontend
+    ports:
+    - "8081:8080"
+    volumes:
+    - ./Frontend:/Frontend
+    depends_on:
+    - backend 
